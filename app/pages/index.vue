@@ -155,6 +155,7 @@ const remainingCount = computed(
 
       <template #footer>
         <p class="text-sm text-gray-500">尚未完成 {{ remainingCount }} 筆</p>
+        <p>**雙擊可編輯todo**</p>
       </template>
     </UCard>
   </div>
