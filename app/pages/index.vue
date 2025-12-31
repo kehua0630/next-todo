@@ -126,7 +126,7 @@ const remainingCount = computed(
           <div class="flex items-center gap-2 flex-1">
             <input type="checkbox" v-model="todo.done" class="accent-primary" />
 
-            <!-- 顯示 / 編輯 -->
+            <!-- 編輯 input -->
             <input
               v-if="todo.editing"
               v-model="todo.text"
@@ -134,28 +134,40 @@ const remainingCount = computed(
               @keyup.enter="finishEdit(todo)"
               @blur="finishEdit(todo)"
             />
+
+            <!-- 顯示文字 -->
             <span
               v-else
-              class="flex-1 cursor-pointer"
+              class="flex-1"
               :class="{ 'line-through text-gray-400': todo.done }"
-              @dblclick="startEdit(todo)"
             >
               {{ todo.text }}
             </span>
           </div>
 
-          <UButton
-            icon="i-heroicons-trash"
-            color="red"
-            variant="ghost"
-            @click="removeTodo(todo.id)"
-          />
+          <!-- 操作按鈕 -->
+          <div class="flex gap-1">
+            <!-- ✏️ 編輯 -->
+            <UButton
+              icon="i-heroicons-pencil-square"
+              color="gray"
+              variant="ghost"
+              @click="startEdit(todo)"
+            />
+
+            <!-- 🗑️ 刪除 -->
+            <UButton
+              icon="i-heroicons-trash"
+              color="red"
+              variant="ghost"
+              @click="removeTodo(todo.id)"
+            />
+          </div>
         </li>
       </ul>
 
       <template #footer>
         <p class="text-sm text-gray-500">尚未完成 {{ remainingCount }} 筆</p>
-        <p>**雙擊可編輯todo**</p>
       </template>
     </UCard>
   </div>
